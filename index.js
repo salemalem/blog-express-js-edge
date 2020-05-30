@@ -5,11 +5,11 @@ const express = require('express');
 const app = new express();
  
 app.use(express.static('public'));
-app.use(expressEdge);
+app.use(expressEdge.engine);
 app.set('views', __dirname + '/views');
 
 app.get('/', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'pages/index.html'));
+    res.render('index');
 });
  
 app.get('/about', (req, res) => {
