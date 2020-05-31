@@ -55,16 +55,18 @@ app.use('/tutorials/store', storeTutorial)
 
 const auth = require("./middleware/auth");
 
+const redirectIfAuthenticated = require('./middleware/redirectIfAuthenticated')
+
 app.get(["/", "/tutorials"], 
     homePageController
 );
 app.get("/tutorials/new", auth, createTutorialController);
 app.post("/tutorials/store", storeTutorialController);
 app.get("/tutorials/:id", getTutorialController);
-app.get('/login', loginController);
-app.post('/users/login', loginUserController);
-app.get("/register", createUserController);
-app.post("/users/register", storeUserController);
+app.get('/login', redirectIfAuthenticated, loginController);
+app.post('/users/login', redirectIfAuthenticated, loginUserController);
+app.get("/register", redirectIfAuthenticated, createUserController);
+app.post("/users/register", redirectIfAuthenticated, storeUserController);
 
 app.listen(4000, () => {
     console.log('App listening on port 4000')
