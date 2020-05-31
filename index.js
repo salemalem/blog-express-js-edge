@@ -44,7 +44,7 @@ app.post('/tutorials/store', (req, res) => {
     image.mv(path.resolve(__dirname, 'public/tutorials/images', image.name), (error) => {
         Tutorials.create({
             ...req.body,
-            image: `/images/${image.name}`
+            image: `/tutorials/images/${image.name}`
         }, (error, post) => {
             res.redirect('/');
         });
