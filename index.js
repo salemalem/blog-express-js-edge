@@ -9,6 +9,8 @@ const createTutorialController = require('./controllers/createTutorial')
 const homePageController = require('./controllers/homePage')
 const storeTutorialController = require('./controllers/storeTutorial')
 const getTutorialController = require('./controllers/getTutorial')
+const createUserController = require("./controllers/createUser");
+const storeUserController = require('./controllers/storeUser');
 
 const Tutorials = require('./database/models/Tutorials');
  
@@ -39,6 +41,8 @@ app.get(["/", "/tutorials"],
 app.get("/tutorials/new", createTutorialController);
 app.post("/tutorials/store", storeTutorialController);
 app.get("/tutorials/:id", getTutorialController);
+app.get("/register", createUserController);
+app.post("/users/register", storeUserController);
 
 app.listen(4000, () => {
     console.log('App listening on port 4000')
