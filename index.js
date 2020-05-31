@@ -16,24 +16,13 @@ app.use(express.static('public'));
 app.use(expressEdge.engine);
 app.set('views', __dirname + '/views');
 
-app.get('/', (req, res) => {
-    res.render('index');
+app.get(['/', '/tutorials'],
+    (req, res) => {
+        res.render('index');
 });
 
-app.get('/posts/new', (req, res) => {
+app.get('/tutorials/new', (req, res) => {
     res.render('create')
-});
- 
-app.get('/about', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'pages/about.html'));
-});
-
-app.get('/contact', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'pages/contact.html'));
-});
- 
-app.get('/post', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'pages/post.html'));
 });
 
 app.listen(4000, () => {
