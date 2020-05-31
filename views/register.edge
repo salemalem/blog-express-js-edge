@@ -14,6 +14,14 @@
     </div>
   </div>
 </header>
+
+@if(errors.length > 0)
+  <ul class="list-group">
+    @each(error in errors)
+      <li class="list-group-item text-danger">{{ error }}</li>
+    @endeach
+  </ul>
+@endif
  
 <div class="container">
   <div class="row">

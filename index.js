@@ -6,6 +6,7 @@ const bodyParser = require('body-parser');
 const fileUpload = require("express-fileupload");
 const expressSession = require('express-session');
 const connectMongo = require('connect-mongo');
+const connectFlash = require("connect-flash");
 
 const createTutorialController = require('./controllers/createTutorial')
 const homePageController = require('./controllers/homePage')
@@ -47,6 +48,7 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({
     extended: true
 }));
+app.use(connectFlash());
 
 const storeTutorial = require('./middleware/storeTutorial')
 app.use('/tutorials/store', storeTutorial)
