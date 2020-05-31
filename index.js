@@ -4,6 +4,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const fileUpload = require("express-fileupload");
+const expressSession = require('express-session');
 
 const createTutorialController = require('./controllers/createTutorial')
 const homePageController = require('./controllers/homePage')
@@ -17,6 +18,10 @@ const loginUserController = require('./controllers/loginUser');
 const Tutorials = require('./database/models/Tutorials');
  
 const app = new express();
+
+app.use(expressSession({
+    secret: 'secret'
+}));
 
 mongoose.connect('mongodb://localhost:27017/mydb', { 
         useNewUrlParser: true,
