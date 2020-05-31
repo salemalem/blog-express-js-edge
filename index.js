@@ -11,6 +11,8 @@ const storeTutorialController = require('./controllers/storeTutorial')
 const getTutorialController = require('./controllers/getTutorial')
 const createUserController = require("./controllers/createUser");
 const storeUserController = require('./controllers/storeUser');
+const loginController = require("./controllers/login");
+const loginUserController = require('./controllers/loginUser');
 
 const Tutorials = require('./database/models/Tutorials');
  
@@ -18,7 +20,8 @@ const app = new express();
 
 mongoose.connect('mongodb://localhost:27017/mydb', { 
         useNewUrlParser: true,
-        useUnifiedTopology: true
+        useUnifiedTopology: true,
+        useCreateIndex: true
     })
     .then(() => 'You are now connected to Mongo!')
     .catch(err => console.error('Something went wrong', err));
@@ -41,6 +44,8 @@ app.get(["/", "/tutorials"],
 app.get("/tutorials/new", createTutorialController);
 app.post("/tutorials/store", storeTutorialController);
 app.get("/tutorials/:id", getTutorialController);
+app.get('/login', loginController);
+app.post('/users/login', loginUserController);
 app.get("/register", createUserController);
 app.post("/users/register", storeUserController);
 
