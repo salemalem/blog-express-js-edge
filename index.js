@@ -25,6 +25,9 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 
+const storeTutorial = require('./middleware/storeTutorial')
+app.use('/tutorials/store', storeTutorial)
+
 app.get(['/', '/tutorials'],
     async (req, res) => {
         const tutorials = await Tutorials.find({})
