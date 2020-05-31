@@ -36,9 +36,9 @@ app.use('/tutorials/store', storeTutorial)
 app.get(["/", "/tutorials"], 
     homePageController
 );
-app.get("/tutorials/:id", getTutorialController);
 app.get("/tutorials/new", createTutorialController);
 app.post("/tutorials/store", storeTutorialController);
+app.get("/tutorials/:id", getTutorialController);
 
 app.listen(4000, () => {
     console.log('App listening on port 4000')
