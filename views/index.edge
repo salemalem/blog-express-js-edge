@@ -27,6 +27,10 @@
               {{ tutorial.title }}
             </h2>
           </a>
+          <p class="post-meta">Posted by
+            <a href="#">{{ tutorial.username }}</a>
+            on {{ tutorial.createdAt.toDateString() }}
+          </p>
         </div>
         <hr>
       @endeach
