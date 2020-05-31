@@ -17,6 +17,7 @@ const createUserController = require("./controllers/createUser");
 const storeUserController = require('./controllers/storeUser');
 const loginController = require("./controllers/login");
 const loginUserController = require('./controllers/loginUser');
+const logoutController = require("./controllers/logout");
 
 const Tutorials = require('./database/models/Tutorials');
  
@@ -74,6 +75,8 @@ app.get('/login', redirectIfAuthenticated, loginController);
 app.post('/users/login', redirectIfAuthenticated, loginUserController);
 app.get("/register", redirectIfAuthenticated, createUserController);
 app.post("/users/register", redirectIfAuthenticated, storeUserController);
+app.get("/logout", logoutController);
+
 
 app.listen(4000, () => {
     console.log('App listening on port 4000')
