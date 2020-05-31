@@ -1,4 +1,4 @@
-@layout('layout.app')
+@layout('layouts.app')
 
 @section('content')
 <!-- Page Header -->
@@ -18,7 +18,13 @@
 <div class="container">
   <div class="row">
     <div class="col-md-8 offset-md-2">
-      <form action="/posts/store" method="POST">
+      <form action="/tutorials/store" method="POST">
+        <div class="control-group">
+          <div class="form-group floating-label-form-group controls">
+            <label>Username</label>
+            <input type="text" name="username" placeholder="Username" class="form-control">
+          </div>
+        </div>
         <div class="control-group">
           <div class="form-group floating-label-form-group controls">
             <label>Title</label>
