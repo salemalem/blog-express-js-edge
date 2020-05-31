@@ -5,6 +5,11 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const fileUpload = require("express-fileupload");
 
+const createTutorialController = require('./controllers/createTutorial')
+const homePageController = require('./controllers/homePage')
+const storeTutorialController = require('./controllers/storeTutorial')
+const getTutorialController = require('./controllers/getTutorial')
+
 const Tutorials = require('./database/models/Tutorials');
  
 const app = new express();
@@ -28,38 +33,12 @@ app.use(bodyParser.urlencoded({
 const storeTutorial = require('./middleware/storeTutorial')
 app.use('/tutorials/store', storeTutorial)
 
-app.get(['/', '/tutorials'],
-    async (req, res) => {
-        const tutorials = await Tutorials.find({})
-        res.render('index', {
-            tutorials
-        })
-});
-
-app.get('/tutorials/new', (req, res) => {
-    res.render('create')
-});
-
-app.post('/tutorials/store', (req, res) => {
-    const {
-        image
-    } = req.files
-    image.mv(path.resolve(__dirname, 'public/tutorials/images', image.name), (error) => {
-        Tutorials.create({
-            ...req.body,
-            image: `/tutorials/images/${image.name}`
-        }, (error, post) => {
-            res.redirect('/');
-        });
-    })
-});
-
-app.get('/tutorials/:id', async (req, res) => {
-    const tutorial = await Tutorials.findById(req.params.id)
-    res.render('tutorial', {
-        tutorial
-    })
-});
+app.get(["/", "/tutorials"], 
+    homePageController
+);
+app.get("/tutorials/:id", getTutorialController);
+app.get("/tutorials/new", createTutorialController);
+app.post("/tutorials/store", storeTutorialController);
 
 app.listen(4000, () => {
     console.log('App listening on port 4000')
